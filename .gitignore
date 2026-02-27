@@ -1,0 +1,26 @@
+# Firecrawl 缓存目录
+.firecrawl/
+
+# 原始抓取文件（保留整理后的）
+# .firecrawl/aliyun-fc-docs/
+# .firecrawl/aliyun-model-studio-docs/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.log

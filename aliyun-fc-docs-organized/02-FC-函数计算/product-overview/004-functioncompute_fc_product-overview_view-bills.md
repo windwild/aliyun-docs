@@ -1,0 +1,106 @@
+### 关注阿里云
+
+关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+
+![阿里云APP](https://img.alicdn.com/imgextra/i4/O1CN01XLesV31fkf7pYNATb_!!6000000004045-2-tps-400-400.png)![阿里云微信](https://img.alicdn.com/tfs/TB1AOdINW6qK1RjSZFmXXX0PFXa-258-258.jpg)
+
+联系我们：4008013260
+
+[首页](https://help.aliyun.com/) [函数计算](https://help.aliyun.com/zh/functioncompute/)[函数计算 FC 3.0](https://help.aliyun.com/zh/functioncompute/fc/)[产品概述](https://help.aliyun.com/zh/functioncompute/fc/product-overview/)[产品计费](https://help.aliyun.com/zh/functioncompute/fc/product-overview/billing-fc/)账单查询
+
+# 账单查询
+
+更新时间：2025-09-14 22:47:18
+
+复制为 MD 格式
+
+[产品详情](https://www.aliyun.com/product/fc)
+
+[我的收藏](https://help.aliyun.com/my_favorites.html)
+
+[上一篇：欠费说明](https://help.aliyun.com/zh/functioncompute/fc/product-overview/overdue-payments-1)[下一篇：企业分账](https://help.aliyun.com/zh/functioncompute/fc/product-overview/enterprise-account)
+
+该文章对您有帮助吗？
+
+反馈
+
+- 本页导读 （1）
+
+查看每月有哪些云产品产生消费
+
+查看每日的实时账单
+
+查看成员账号、RAM子账号的账单
+
+查看费用分布
+
+常见问题
+
+使用函数计算过程中，如果您需要定期了解账号消费情况或者账号欠费时，需要查看账单流水和费用明细，删除不再使用的实例等，您可以在费用与成本页面查看函数计算相关的费用账单信息。
+
+## **查看每月有哪些云产品产生消费**
+
+控制台
+
+API
+
+消费概览：在费用与成本控制台 **[账单概览](https://billing-cost.console.aliyun.com/finance/month-bill/account)** 面，您可以看到按月、按企业/组织/账号（个人账号不支持）的维度下，所有发生消费的云产品账单。并可根据 **待还款金额**，对未结清的账单进行充值还款。
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7228863571/p930458.png)
+
+调用 [账单总览查询服务](https://help.aliyun.com/zh/user-center/developer-reference/api-bssopenapi-2017-12-14-querybilloverview "") 接口，查询每月有哪些云产品产生消费。
+
+## **查看每日的实时账单**
+
+控制台
+
+API
+
+在[账单详情](https://billing-cost.console.aliyun.com/finance/split-bill)页面，将 **统计项** 设置为 **计费项**、将 **统计周期** 设置为 **天**，查看账单明细中 **应付金额** 一列（升级版账单暂不支持），可看到您每天实际扣款的产品，以及实际扣款金额。如果想查看每小时实际扣款的产品，可将 **统计周期** 设置为 **明细**。
+
+应付金额：
+
+指参与了各种优惠、订阅（节省计划）、优惠券等优惠措施之后，用户实际需要支付的金额。
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7228863571/p930469.png)
+
+调用 [查询实例账单服务](https://help.aliyun.com/zh/user-center/developer-reference/api-bssopenapi-2017-12-14-describeinstancebill "") 接口，查看账单详情。
+
+**定制账单列字段：** 单击右侧![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3358025371/p879706.png)按钮，可以定制需要查看的账单字段。
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7228863571/p931062.png)
+
+## **查看成员账号、RAM子账号的账单**
+
+- 企业管理员MA账号查看成员账号的账单
+
+**[账单概览](https://billing-cost.console.aliyun.com/finance/month-bill/account)** 或者[账单详情](https://billing-cost.console.aliyun.com/finance/split-bill)页面，通过 **企业/组织/账号** 查看企业（或组织）下其他账号的订单信息，也可以查看已授权的关联企业实体账号账单信息。
+
+例如：A企业关联B企业，并将B企业的账单查询权限授予A企业。当A企业的MA账号登录时，不仅可以查看A企业所有组织账号信息，也可以在账单管理查看B企业账号的账单信息；不支持查看B企业账号除账单权限外的其他信息（如B企业账号的资金信息）。
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7228863571/p941231.png)
+
+- 主账号查看RAM子账号的账单
+
+RAM子账号没有单独的账单，只支持主账号维度查看账单。
+
+
+## **查看费用分布**
+
+费用与成本的[成本分析](https://billing-cost.console.aliyun.com/expense-manage/expense-analyze)页面，可查看每月各云产品的费用分布，帮您了解不同维度下的费用变化趋势，详细可参考 [成本分析的介绍](https://help.aliyun.com/zh/user-center/cost-analysis/ "")。
+
+![image](<Base64-Image-Removed>)
+
+## **常见问题**
+
+- [为什么停止函数计算服务后，查看账单却发现仍在消费？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#68c9afc8427cx "")
+
+- [我的函数没有任何请求了，为什么扣费信息一直在增加？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#e4987a4373va0 "")
+
+- [我购买的资源包，到期时间是什么时候？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#section-ub4-elc-wxu "")
+
+- [购买了资源包，为什么还有扣费？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#5930cc3ce4141 "")
+
+- [购买了试用套餐后就是免费使用吗？是否还会收费？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#57353bcc02l40 "")
+
+- [使用GPU实例运行的过程中，会涉及到哪些资源使用项？](https://help.aliyun.com/zh/functioncompute/fc/product-overview/faq-about-billing#4dcf079c976rq "")

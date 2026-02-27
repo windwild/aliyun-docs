@@ -1,0 +1,298 @@
+### 关注阿里云
+
+关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+
+![阿里云APP](https://img.alicdn.com/imgextra/i4/O1CN01XLesV31fkf7pYNATb_!!6000000004045-2-tps-400-400.png)![阿里云微信](https://img.alicdn.com/tfs/TB1AOdINW6qK1RjSZFmXXX0PFXa-258-258.jpg)
+
+联系我们：4008013260
+
+[首页](https://help.aliyun.com/) [函数计算](https://help.aliyun.com/zh/functioncompute/)[函数计算 FC 3.0](https://help.aliyun.com/zh/functioncompute/fc/)[函数](https://help.aliyun.com/zh/functioncompute/fc/user-guide/)[函数运维](https://help.aliyun.com/zh/functioncompute/fc/user-guide/function-o-m/)[监控报警](https://help.aliyun.com/zh/functioncompute/fc/user-guide/monitoring-and-alerting/)监控数据
+
+# 监控数据
+
+更新时间：2025-04-23 01:33:42
+
+复制为 MD 格式
+
+[产品详情](https://www.aliyun.com/product/fc)
+
+[我的收藏](https://help.aliyun.com/my_favorites.html)
+
+[上一篇：监控指标](https://help.aliyun.com/zh/functioncompute/fc/user-guide/monitoring-metrics-1)[下一篇：实例级别指标](https://help.aliyun.com/zh/functioncompute/fc/user-guide/instance-level-metrics)
+
+该文章对您有帮助吗？
+
+反馈
+
+- 本页导读 （1）
+
+Project
+
+StartTime和EndTime
+
+Dimensions
+
+Period
+
+Metric
+
+使用示例
+
+本文介绍如何通过云监控的API调取函数计算的监控数据。您可以通过API接口的相关参数，例如Project、StartTime、EndTime、Dimensions、Period或Metric等进行调取。
+
+关于API接口说明，请参见 [API概览](https://help.aliyun.com/zh/cms/cloudmonitor-1-0/developer-reference/list-of-operations-by-function#doc-14254 "")。
+
+## Project
+
+函数计算监控服务指标项的数据都使用相同的Project名称：acs\_fc。
+
+使用Java SDK设置代码示例如下：
+
+```java
+QueryMetricRequest request = new QueryMetricRequest();
+request.setProject("acs_fc");
+```
+
+## StartTime和EndTime
+
+云监控的时间参数取值范围使用左开右闭的形式，即（StartTime, EndTime\]，处于边界StartTime的数据不会被获取，而处于边界EndTime的数据会被查询到。
+
+**说明**
+
+云监控数据保留时间为31天，设置的StartTime和EndTime的时间间距不能大于31天，31天前的数据是查询不到的。
+
+关于其他时间参数信息，请参见 [API概览](https://help.aliyun.com/zh/cms/cloudmonitor-1-0/developer-reference/list-of-operations-by-function#doc-14254 "")。
+
+使用Java SDK设置代码示例如下：
+
+```java
+request.setStartTime("2024-07-19 08:00:00");
+request.setEndTime("2024-07-19 09:00:00");
+```
+
+## Dimensions
+
+函数计算监控服务根据函数计算资源结构和使用场景，将监控指标分为地域维度、服务维度和函数维度。不同的维度使用的Dimensions参数不同。
+
+- 地域维度数据的Dimensions设置如下：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```json
+{"region": "${your_region}"}
+```
+
+- 函数维度数据的Dimensions设置如下：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```json
+{"region": "${your_region}", "functionName": "${your_functionName}"}
+```
+
+
+**说明**
+
+Dimenisons是一个JSON字符串，可以包含一个或多个Key-Value对，用于表示不同的监控维度。使用Java SDK设置代码示例如下：
+
+```java
+request.setDimensions("{\"region\":\"your_region\"}");
+```
+
+## Period
+
+函数计算监控指标的聚合粒度均为60s。
+
+使用Java SDK设置代码示例如下：
+
+```java
+request.setPeriod("60");
+```
+
+## Metric
+
+使用Java SDK设置代码示例如下：
+
+```java
+request.setMetric("your_metric");
+```
+
+函数计算监控指标参考手册中详细介绍的各项指标项，对应的Metric名称如下表：
+
+| **指标维度** | **Metric** | **指标项对应名称** |
+| --- | --- | --- |
+
+|     |     |     |
+| --- | --- | --- |
+| **指标维度** | **Metric** | **指标项对应名称** |
+| 地域 | RegionTotalInvocations | 函数执行调用次数 |
+| RegionServerErrors | 服务端错误次数 |
+| RegionClientErrors | 客户端错误次数 |
+| RegionFunctionErrors | 函数错误次数 |
+| RegionThrottles | 流控错误的并发实例超上限 |
+| RegionResourceThrottles | 流控错误实例总数超上限 |
+| RegionConcurrencyLimit | 按量实例上限数 |
+| RegionConcurrentCount | 按量实例数 |
+| RegionProvisionedCurrentInstance | 预留实例数 |
+| 函数 | FunctionTotalInvocations | 函数总调用次数 |
+| FunctionProvisionInvocations | 基于预留模式的调用次数 |
+| FunctionHTTPStatus2xx | 函数HTTP状态码2xx请求数 |
+| FunctionHTTPStatus3xx | 函数HTTP状态码3xx请求数 |
+| FunctionHTTPStatus4xx | 函数HTTP状态码4xx请求数 |
+| FunctionHTTPStatus5xx | 函数HTTP状态码5xx请求数 |
+| FunctionServerErrors | 服务端错误次数 |
+| FunctionClientErrors | 客户端错误次数 |
+| FunctionFunctionErrors | 函数错误次数 |
+| FunctionConcurrencyThrottles | 流控错误的并发实例超上限 |
+| FunctionResourceThrottles | 流控错误的实例总数超上限 |
+| FunctionAvgDuration | 函数执行平均时间 |
+| FunctionP90Duration | 函数P90执行时间 |
+| FunctionP99Duration | 函数P99执行时间 |
+| FunctionMaxDuration | 函数最大执行时间 |
+| FunctionLatencyAvg | 端到端平均延时 |
+| FunctionMemoryLimitMB | 内存配额 |
+| FunctionMaxMemoryUsage | 已使用内存 |
+| FunctionOndemandInstanceQuota | 函数按量实例数上限 |
+| FunctionOndemandActiveInstance | 函数已使用按量实例数 |
+| FunctionProvisionedCurrentInstance | 函数预留实例数 |
+| FunctionEnqueueCount | 异步请求入队 |
+| FunctionDequeueCount | 异步请求处理完成 |
+| FunctionAsyncMessageLatencyAvg | 异步消息处理延时平均时间 |
+| FunctionAsyncMessageLatencyMax | 异步消息处理延时最大时间 |
+| FunctionAsyncEventExpiredDropped | 异步调用触发事件超时丢弃 |
+| FunctionDestinationErrors | 异步调用触发事件目标触发失败 |
+| FunctionDestinationSucceeded | 异步调用触发事件目标触发成功 |
+| FunctionAsyncMessagesBacklogV2 | 异步请求积压数 |
+| FunctionAsyncMessagesInProcess | 处理中的异步请求数 |
+| FunctionMaxConcurrentRequests | 单实例多请求最大并发请求数（实例级别指标） |
+| FunctionAvgConcurrentRequests | 单实例多请求平均并发请求数（实例级别指标） |
+| FunctionvCPUQuotaCores | vCPU配额（实例级别指标） |
+| FunctionMaxvCPUCores | 最大vCPU（实例级别指标） |
+| FunctionAvgvCPUCores | 平均vCPU（实例级别指标） |
+| FunctionMaxvCPUUtilization | vCPU最大利用率（实例级别指标） |
+| FunctionAvgvCPUUtilization | vCPU平均利用率（实例级别指标） |
+| FunctionRXBytesPerSec | 入网流量（实例级别指标） |
+| FunctionTXBytesPerSec | 出网流量（实例级别指标） |
+| FunctionMemoryLimitMB | 内存配额（实例级别指标） |
+| FunctionMaxMemoryUsageMB | 最大使用内存（实例级别指标） |
+| FunctionAvgMemoryUsageMB | 平均使用内存（实例级别指标） |
+| FunctionMaxMemoryUtilization | 内存最大使用率（实例级别指标） |
+| FunctionAvgMemoryUtilization | 内存平均使用率（实例级别指标） |
+| FunctionGPUMemoryLimitMB | GPU显存配额（实例级别指标） |
+| FunctionGPUMaxMemoryUsage | GPU已使用显存（实例级别指标） |
+| FunctionGPUMemoryUsagePercent | GPU显存使用率（实例级别指标） |
+| FunctionGPUSMPercent | GPU SM利用率（实例级别指标） |
+| FunctionGPUEncoderPercent | GPU硬件编码器利用率（实例级别指标） |
+| FunctionGPUDecoderPercent | GPU硬件解码器利用率（实例级别指标） |
+
+## 使用示例
+
+pom.xml示例如下：
+
+```xml
+...
+    <dependencies>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-cms</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+    </dependencies>
+...
+
+```
+
+代码示例如下：
+
+```java
+import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.cms.model.v20170301.QueryMetricListRequest;
+import com.aliyuncs.cms.model.v20170301.QueryMetricListResponse;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
+import com.aliyuncs.http.FormatType;
+import com.aliyuncs.profile.DefaultProfile;
+import com.aliyuncs.profile.IClientProfile;
+
+public class MonitorService {
+    public static void main(String[] args) {
+        /*
+        阿里云账号AccessKey拥有所有API的访问权限，建议您使用RAM用户进行API访问或日常运维。
+        建议不要把AccessKey ID和AccessKey Secret保存到工程代码里，否则可能导致AccessKey泄露，威胁您账号下所有资源的安全。
+        本示例以将AccessKey和AccessSecretKey保存在环境变量中实现身份验证为例。
+        运行本示例前请先在本地环境中设置环境变量ALIBABA_CLOUD_ACCESS_KEY_ID和ALIBABA_CLOUD_ACCESS_KEY_SECRET。
+        在FC Runtime运行环境下，配置执行权限后，ALIBABA_CLOUD_ACCESS_KEY_ID和ALIBABA_CLOUD_ACCESS_KEY_SECRET环境变量会被自动设置。
+        */
+        String accessKey = System.getenv("ALIBABA_CLOUD_ACCESS_KEY_ID");
+        String accessSecretKey = System.getenv("ALIBABA_CLOUD_ACCESS_KEY_SECRET");
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKey, accessSecretKey);
+        IAcsClient client = new DefaultAcsClient(profile);
+
+        QueryMetricListRequest request = new QueryMetricListRequest();
+        request.setProject("acs_fc");
+        request.setPeriod("60");
+        request.setStartTime("2023-08-26 16:20:00");
+        request.setEndTime("2023-08-26 16:30:00");
+        request.setAcceptFormat(FormatType.JSON);
+
+        try {
+            // Region维度JSONObject dim = new JSONObject();
+            request.setMetric("RegionTotalInvocations");  // 选择metric。
+            dim.put("region", "<your_region>");  // 如: cn-shanghai
+            request.setDimensions(dim.toJSONString());
+            QueryMetricListResponse response = client.getAcsResponse(request);
+            System.out.println(response.getCode());
+            System.out.println(response.getMessage());
+            System.out.println(response.getRequestId());
+            System.out.println(response.getDatapoints());
+
+            // Function维度dim = new JSONObject();
+            request.setMetric("FunctionTotalInvocations");  // 选择metric。
+            dim.put("region", "<your_region>");
+            dim.put("serviceName", ""); //FC2.0 创建的函数名：{serviceName}${functionName},获得指标时需要dim.put("serviceName",{serviceName}), FC3.0 创建的函数 {functionName}，获取指标时需要dim.put("serviceName","")。
+            dim.put("functionName", "<your_function_name>");
+            request.setDimensions(dim.toJSONString());
+            response = client.getAcsResponse(request);
+            System.out.println(response.getCode());
+            System.out.println(response.getMessage());
+            System.out.println(response.getRequestId());
+            System.out.println(response.getDatapoints());
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
