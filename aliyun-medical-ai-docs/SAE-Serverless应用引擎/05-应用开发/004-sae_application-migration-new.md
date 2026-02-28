@@ -1,0 +1,137 @@
+### 关注阿里云
+
+关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+
+![阿里云APP](https://img.alicdn.com/imgextra/i4/O1CN01XLesV31fkf7pYNATb_!!6000000004045-2-tps-400-400.png)![阿里云微信](https://img.alicdn.com/tfs/TB1AOdINW6qK1RjSZFmXXX0PFXa-258-258.jpg)
+
+联系我们：4008013260
+
+[首页](https://help.aliyun.com/) [Serverless 应用引擎](https://help.aliyun.com/zh/sae/)[操作指南](https://help.aliyun.com/zh/sae/user-guide/)[应用开发](https://help.aliyun.com/zh/sae/sae-2-application-development/)应用迁移
+
+# 应用迁移
+
+更新时间：2025-09-27 22:33:55
+
+复制为 MD 格式
+
+[产品详情](https://www.aliyun.com/product/aliware/sae)
+
+[我的收藏](https://help.aliyun.com/my_favorites.html)
+
+[上一篇：使用Spring Boot开发Dubbo应用](https://help.aliyun.com/zh/sae/use-spring-boot-to-develop-dubbo-applications)[下一篇：将Spring Cloud框架应用平滑迁移至SAE](https://help.aliyun.com/zh/sae/smoothly-migrate-spring-cloud-applications-to-sae)
+
+该文章对您有帮助吗？
+
+反馈
+
+- 本页导读 （1）
+
+迁移至SAE的价值
+
+什么是平滑迁移
+
+迁移流程
+
+迁移方案
+
+了解更多
+
+如果您的应用已经部署到生产环境并处于正常运行状态，为了保持业务不中断运行，并且不发生数据丢失，您可以采用平滑迁移的方式将应用迁移至SAE。
+
+## 迁移至SAE的价值
+
+- SAE为应用部署提供了灵活的启动参数配置、可视化的部署流程、优雅上下线服务和分批发布等功能，让您的应用发布可配、可查、可控。
+
+- SAE提供了服务发现与配置管理功能，您无需运维Eureka、ZooKeeper、Consul等中间件组件，可以直接使用SAE提供的商业版服务发现与配置管理。
+
+- SAE控制台提供了统一的服务治理，目前支持查询发布和消费的服务详情。
+
+- SAE提供了动态扩、缩容功能，可以根据流量高峰和低谷实时地为您的应用扩容和缩容。
+
+- SAE提供了高级监控功能，除了支持基本的实例信息查询外，还支持微服务调用链查询、系统调用拓扑图、慢SQL查询等高级监控功能。
+
+- 对于Spring Cloud框架应用SAE提供限流降级功能，保证您的应用高可用。
+
+- 对于Spring Cloud框架应用SAE提供了全链路灰度功能，满足您的应用在迭代、更新时通过灰度进行小规模验证的需求。
+
+
+## 什么是平滑迁移
+
+如果您的Spring Cloud集群及应用已经部署在生产环境并处于正常运行状态中，现在需要将集群迁移到SAE并享用完整的SAE功能，在迁移过程中，业务需要平稳运行而不中断，而保证应用平台运行不中断迁移到SAE即为平滑迁移。
+
+**说明**
+
+如果您的集群尚未在生产环境中运行，或者您可以接受停机迁移，则无须参考本文进行平滑迁移，可直接将应用在本地开发完再部署到SAE。更多信息，请参见以下文档：
+
+- Spring Cloud应用： [将Spring Cloud应用托管到SAE](https://help.aliyun.com/zh/sae/use-spring-cloud-to-develop-microservice-applications-and-deploy-them-on-sae#concept-123010-zh "")
+
+- Dubbo应用： [将Dubbo应用托管到SAE](https://help.aliyun.com/zh/sae/serverless-app-engine-classic/user-guide/host-dubbo-applications-to-sae#concept-123020-zh "")
+
+
+## 迁移流程
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4386209571/CAEQVRiBgICwtOqDqhkiIDcyYzIzNjFjYmY4YzRlMjRiM2U0Zjk4YWJjOTNiYTEz4950184_20250226141802.374.svg)
+
+1. 迁移应用
+
+迁移的应用通常是无状态的，需要先进行应用迁移。
+
+2. **可选：**迁移SLB或修改域名配置
+
+在应用迁移完成后，您还需要迁移SLB或修改域名配置。
+
+   - SLB
+
+     - 如果您的应用在迁移之前已经使用SLB，应用迁移后可以复用该SLB。您可以根据您的实际需求选择绑定SLB的策略。更多信息，请参见 [为应用绑定CLB并生成应用的公网或私网访问IP](https://help.aliyun.com/zh/sae/sae-2-bind-clb-for-application "")。
+
+     - 如果您的应用在迁移之前没有使用SLB，建议在迁移完入口应用，例如流程图中所示的API Gateway后，为该应用创建并绑定一个新SLB。
+
+     - 迁移方案中，推荐使用双注册和双订阅方案，以节约ECS成本。如果由于某种原因，例如原ECS端口被占用不能复用原ECS，那么需要采用切流迁移方案，添加新的ECS用于应用迁移。在应用迁移完成后，依据迁移前应用是否使用SLB，选择复用SLB或创建SLB并绑定到迁移后应用。
+   - 域名
+
+     - 如果迁移后的应用可以复用SLB，则域名配置无需修改。
+
+     - 如果迁移后的应用需要创建新的SLB并绑定，则需要在域名中添加新的SLB配置。具体步骤，请参见 [修改DNS服务器](https://help.aliyun.com/zh/dws/user-guide/modify-dns-server#concept-x3z-qvw-12b "")。并删除原来不再使用的SLB。
+3. **可选：**迁移存储和消息队列
+
+   - 如果应用迁移前已经部署在阿里云上，同时存储和消息队列同样使用了阿里云相关产品（如RDS、MQ等），那么应用迁移完成后，迁移前的存储和消息队列无需迁移。
+
+   - 如果应用迁移前没有部署在阿里云上，请加入钉群（钉群号：32874633），联系产品技术专家进行咨询。
+
+## 迁移方案
+
+迁移应用有两种方案，切流迁移、双注册和双订阅迁移方案。两种方案均可保证应用正常运行不中断情况下完成平滑迁移。本文主要介绍双注册和双订阅方案。
+
+- 切流迁移方案
+
+使用Dubbo将原有的服务注册中心切换到SAE ConfigServer，开发新的应用部署到SAE，最后通过SLB和域名配置来进行切流。
+
+关于该方案的应用开发，请参见 [微服务场景指引](https://help.aliyun.com/zh/sae/introduction-to-microservice-scenarios#concept-123014-zh "")。
+
+- 双注册和双订阅迁移方案
+
+双注册和双订阅迁移方案是指在应用迁移时同时接入两个注册中心（原有注册中心和SAE注册中心）以保证已迁移的应用和未迁移的应用之间的相互调用。
+
+
+
+本方案实现架构图如下：
+
+![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4386209571/CAEQVRiBgMDr8M.DqhkiIDM1NDIzZDU0OTI4NjQ5YmZiODliMWIwZWUyYzE2YTQw4950184_20250226141602.778.svg)
+
+方案优势如下：
+
+  - 已迁移的应用和未迁移的应用可以互相发现，从而实现互相调用，保证了业务的连续性。
+
+  - 使用方式简单，仅需添加依赖，并修改极少的代码，可以实现双注册和双订阅。
+
+  - 支持查看消费者服务调用列表的详情，实时地查看到迁移的进度。
+
+  - 支持在不需要重启应用的情况下，动态地变更服务注册的策略和服务订阅的策略，只需要重启一次应用就可以完成迁移。
+
+## 了解更多
+
+了解不同架构的微服务应用的迁移方案，请参见：
+
+- [将Spring Cloud框架应用平滑迁移至SAE](https://help.aliyun.com/zh/sae/smoothly-migrate-spring-cloud-applications-to-sae "")
+
+- [将Dubbo应用平滑迁移至SAE](https://help.aliyun.com/zh/sae/smoothly-migrate-dubbo-applications-to-sae2 "")

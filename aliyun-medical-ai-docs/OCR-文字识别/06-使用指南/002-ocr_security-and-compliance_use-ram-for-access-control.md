@@ -1,0 +1,139 @@
+### 关注阿里云
+
+关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+
+![阿里云APP](https://img.alicdn.com/imgextra/i4/O1CN01XLesV31fkf7pYNATb_!!6000000004045-2-tps-400-400.png)![阿里云微信](https://img.alicdn.com/tfs/TB1AOdINW6qK1RjSZFmXXX0PFXa-258-258.jpg)
+
+联系我们：4008013260
+
+[首页](https://help.aliyun.com/) [文字识别](https://help.aliyun.com/zh/ocr/)[安全合规](https://help.aliyun.com/zh/ocr/security-and-compliance/)使用RAM进行访问控制
+
+# 使用RAM进行访问控制
+
+更新时间：2025-04-08 06:29:03
+
+复制为 MD 格式
+
+[产品详情](https://ai.aliyun.com/ocr)
+
+[我的收藏](https://help.aliyun.com/my_favorites.html)
+
+[上一篇：快速使用文字识别](https://help.aliyun.com/zh/ocr/getting-started/use-process)[下一篇：基于身份的策略](https://help.aliyun.com/zh/ocr/security-and-compliance/identity-based-polici/)
+
+该文章对您有帮助吗？
+
+反馈
+
+- 本页导读 （1）
+
+RAM用户
+
+RAM用户相关操作
+
+RAM用户组
+
+RAM用户组相关操作
+
+RAM角色
+
+RAM角色相关操作
+
+身份管理相关文档
+
+为确保您的阿里云账号及云资源使用安全，如非必要应避免直接使用阿里云账号（即主账号）来访问文字识别。推荐使用RAM身份（即RAM用户和RAM角色）来访问文字识别。
+
+## **RAM用户**
+
+RAM用户需要由阿里云账号（即主账号）或拥有管理员权限的RAM用户、RAM角色来创建，且必须在获得授权后才能登录控制台或使用API访问阿里云账号下的资源。
+
+对于RAM用户的使用，建议您：
+
+- 使用阿里云账号创建一个RAM用户，并为RAM用户授予管理员权限，后续使用有管理员权限的RAM用户创建并管理其他RAM用户。
+
+- 将人员用户和程序用户分离。
+
+创建RAM用户时，支持设置 **控制台访问** 和 **使用永久AccessKey访问** 两种访问方式。
+
+控制台用户使用 **账号和密码** 访问云产品控制台，API用户使用 **访问密钥AK（AccessKey）** 调用API访问云资源。建议您将两个不同的使用场景分离，避免误操作导致服务受到影响。对于通过控制台访问的用户，推荐为其开启MFA多因素认证。
+
+- 按需为RAM用户分配最小权限。
+
+最小权限是指授予用户执行某项任务所需的权限，不授予其他无需用到的权限。最小授权可以避免用户操作权限过大，提高数据安全性，减少因权限滥用导致的安全风险。
+
+- 不要把RAM用户的AccessKey ID和AccessKey Secret保存在工程代码中，否则可能导致AK泄露，威胁您账号下所有资源的安全。建议您使用STS或环境变量等方式获取访问授权。
+
+- 满足条件时对RAM用户设置SSO单点登录功能，实现直接使用企业自有的身份登录并访问阿里云资源。
+
+
+### **RAM用户相关操作**
+
+- [RAM用户管理](https://help.aliyun.com/zh/ram/user-guide/overview-of-ram-users "")
+
+- [AK安全方案](https://help.aliyun.com/zh/openapi/accesskey-security-solution "")
+
+- [RAM用户SSO管理](https://help.aliyun.com/zh/ram/overview-of-user-based-sso "")
+
+
+## **RAM用户组**
+
+当您的阿里云账号下有多个RAM用户时，可以通过创建用户组对职责相同的RAM用户进行分组管理和批量授权，高效地管理RAM用户及其权限。
+
+对于RAM用户组的使用，建议您：
+
+- 在对RAM用户组授权时遵循最小权限策略原则。
+
+- 在RAM用户职责发生变化时将其从不再归属的用户组中移除，避免权限滥用。
+
+- 在某个用户组不再需要某些权限时移除用户组对应的权限。
+
+
+## **RAM用户组相关操作**
+
+- [RAM用户组](https://help.aliyun.com/zh/ram/user-guide/overview-of-a-ram-user-group "")
+
+
+## **RAM角色**
+
+RAM角色是一种虚拟用户，可以被授予一组权限策略。与RAM用户不同，RAM角色没有永久身份凭证（登录密码或访问密钥），需要被一个可信实体扮演。扮演成功后，可信实体将获得RAM角色的临时身份凭证，即安全令牌（STS Token），使用该安全令牌就能以RAM角色身份访问被授权的资源。
+
+以下是使用RAM角色的安全建议：
+
+- 创建RAM角色后，请勿随意变更RAM角色的可信实体。修改RAM角色信任策略中的可信实体，可能会导致原受信对象权限缺失，影响业务正常运行。也可能会因增加受信对象，带来过度授权的风险。特殊情况必须修改时请务必在测试账号充分测试，确保功能正常使用后，再应用到正式生产账号。
+
+- 可信实体的RAM用户获得相关授权后即可以调用 [AssumeRole - 获取扮演角色的临时身份凭证](https://help.aliyun.com/zh/ram/developer-reference/api-sts-2015-04-01-assumerole "") 接口获取RAM角色的STS Token。STS Token自颁发后将在一段时间内有效，建议您设置合理的Token有效期，避免有效期过长带来安全风险。
+
+
+
+**说明**
+
+
+
+
+
+STS Token有效期的最大值为角色的最大会话时间。从安全的角度考虑，应将角色最大会话时间也设置在合理范围。
+
+- 满足条件时对RAM角色设置SSO单点登录功能，实现直接使用企业自有的身份登录并访问阿里云资源。
+
+
+### **RAM角色相关操作**
+
+- [RAM角色管理](https://help.aliyun.com/zh/ram/user-guide/ram-role-overview "")
+
+- [扮演RAM角色](https://help.aliyun.com/zh/ram/user-guide/assume-a-ram-role "")
+
+- [设置RAM角色最大会话时间](https://help.aliyun.com/zh/ram/user-guide/specify-the-maximum-session-duration-for-a-ram-role "")
+
+- [角色SSO管理](https://help.aliyun.com/zh/ram/role-based-sso/ "")
+
+
+## **身份管理相关文档**
+
+- [阿里云身份与权限](https://help.aliyun.com/document_detail/469087.html "")
+
+- [RAM基本概念](https://help.aliyun.com/zh/ram/terms "")
+
+- [RAM相关使用限制](https://help.aliyun.com/zh/ram/product-overview/limits/ "")
+
+- [文字识别系统权限策略参考](https://help.aliyun.com/zh/ocr/security-and-compliance/documentautoml "")
+
+- [文字识别自定义权限策略参考](https://help.aliyun.com/zh/ocr/security-and-compliance/text-recognition-custom-permission-policy-reference "")
