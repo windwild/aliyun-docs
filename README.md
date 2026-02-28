@@ -1,55 +1,53 @@
 # 阿里云产品文档集合
 
-**医疗AI项目完整技术栈文档库** - 专为医疗AI项目收集整理的阿里云产品官方文档
+**医疗AI项目完整技术栈文档库** - 875个阿里云产品官方文档
 
 ## 📚 文档概览
 
 - **产品数量**: 10 个核心产品
 - **文档总数**: 875 个
+- **命名规范**: 产品英文名-中文全称
 - **抓取日期**: 2026-02-27
 - **仓库地址**: https://github.com/windwild/aliyun-docs
 
-## 🏥 医疗AI产品列表
-
-### 核心AI能力
+## 🏥 产品目录（按文档数排序）
 
 | 产品 | 文档数 | 用途 |
 |------|--------|------|
-| [**Model-Studio-百炼**](./Model-Studio-百炼/) | 372 | 大模型服务、通义千问、AI应用开发 |
+| [**ModelStudio-百炼**](./ModelStudio-百炼/) | 372 | 大模型服务、通义千问、AI应用开发 |
+| [**OSS-对象存储**](./OSS-对象存储/) | 133 | 医学电子书、影像、模型文件存储 |
 | [**FC-函数计算**](./FC-函数计算/) | 101 | AI推理、AgentRun、Serverless计算 |
+| [**SAE-Serverless应用引擎**](./SAE-Serverless应用引擎/) | 88 | Taro小程序后端部署、API服务 |
+| [**OCR-文字识别**](./OCR-文字识别/) | 86 | 病历识别、化验单识别、处方识别 |
+| [**OpenSearch-智能搜索**](./OpenSearch-智能搜索/) | 77 | 医学文档全文搜索、知识库检索 |
+| [**Green-内容安全**](./Green-内容安全/) | 6 | 医疗内容审核、敏感词过滤、合规检查 |
+| [**RDS-PostgreSQL-云数据库**](./RDS-PostgreSQL-云数据库/) | 5 | 用户数据管理、病例结构化数据 |
+| [**Elasticsearch-弹性搜索**](./Elasticsearch-弹性搜索/) | 4 | 医学数据分析、搜索引擎 |
 | [**DashVector-向量检索服务**](./DashVector-向量检索服务/) | 3 | 医学文献向量检索、RAG知识库 |
 
-### 搜索与检索
+## 🎯 产品分类
 
-| 产品 | 文档数 | 用途 |
-|------|--------|------|
-| [**OpenSearch-智能搜索**](./OpenSearch-智能搜索/) | 77 | 医学文档全文搜索、知识库检索 |
-| [**Elasticsearch**](./Elasticsearch/) | 4 | 医学数据分析、搜索引擎 |
+### 核心AI能力
+- **ModelStudio-百炼** (372) - 大模型服务
+- **FC-函数计算** (101) - AI推理 + AgentRun
+- **DashVector-向量检索服务** (3) - RAG知识库
+
+### 搜索与检索
+- **OpenSearch-智能搜索** (77) - 全文搜索
+- **Elasticsearch-弹性搜索** (4) - 数据分析
 
 ### 智能识别
-
-| 产品 | 文档数 | 用途 |
-|------|--------|------|
-| [**OCR-文字识别**](./OCR-文字识别/) | 86 | 病历识别、化验单识别、处方识别 |
+- **OCR-文字识别** (86) - 病历/化验单识别
 
 ### 数据存储
-
-| 产品 | 文档数 | 用途 |
-|------|--------|------|
-| [**OSS-对象存储**](./OSS-对象存储/) | 133 | 医学电子书、影像、模型文件存储 |
-| [**RDS-PostgreSQL**](./RDS-PostgreSQL/) | 5 | 用户数据、病例结构化数据 |
+- **OSS-对象存储** (133) - 电子书/影像存储
+- **RDS-PostgreSQL-云数据库** (5) - 结构化数据
 
 ### 应用部署
-
-| 产品 | 文档数 | 用途 |
-|------|--------|------|
-| [**SAE-Serverless应用引擎**](./SAE-Serverless应用引擎/) | 88 | Taro小程序后端部署、API服务 |
+- **SAE-Serverless应用引擎** (88) - 小程序后端
 
 ### 安全合规
-
-| 产品 | 文档数 | 用途 |
-|------|--------|------|
-| [**GREEN-内容安全**](./GREEN-内容安全/) | 6 | 医疗内容审核、敏感词过滤 |
+- **Green-内容安全** (6) - 医疗内容审核
 
 ## 🚀 快速开始
 
@@ -60,76 +58,79 @@ git clone https://github.com/windwild/aliyun-docs.git
 cd aliyun-docs
 ```
 
-### 查看文档
+### 查看产品文档
 
 ```bash
 # 查看所有产品
 ls -d */
 
-# 搜索特定主题
-grep -r "RAG" --include="*.md" .
-grep -r "病历识别" --include="*.md" .
+# 查看特定产品文档数
+find ModelStudio-百炼 -name "*.md" | wc -l
+
+# 搜索特定功能
+grep -r "RAG" ModelStudio-百炼/
+grep -r "病历识别" OCR-文字识别/
 ```
 
-## 📊 产品能力矩阵
+## 📊 医疗AI技术栈
 
-### 医疗AI技术栈完整覆盖
+### 完整架构图
 
 ```
 ┌─────────────────────────────────────────────┐
-│          医疗AI完整技术栈                     │
+│         医疗AI完整技术栈                      │
 ├─────────────────────────────────────────────┤
 │                                             │
 │  AI模型层                                    │
-│  ├─ Model Studio (372) - 大模型服务          │
-│  ├─ FC (101) - AI推理 + AgentRun            │
-│  └─ DashVector (3) - 向量检索/RAG           │
+│  ├─ ModelStudio-百炼 (372) - 大模型         │
+│  ├─ FC-函数计算 (101) - AI推理+AgentRun     │
+│  └─ DashVector-向量检索服务 (3) - RAG       │
 │                                             │
 │  搜索检索层                                   │
-│  ├─ OpenSearch (77) - 全文搜索              │
-│  └─ Elasticsearch (4) - 数据分析            │
+│  ├─ OpenSearch-智能搜索 (77)                │
+│  └─ Elasticsearch-弹性搜索 (4)              │
 │                                             │
 │  智能识别层                                   │
-│  └─ OCR (86) - 病历/化验单识别               │
+│  └─ OCR-文字识别 (86) - 病历识别             │
 │                                             │
 │  数据存储层                                   │
-│  ├─ OSS (133) - 对象存储                    │
-│  └─ RDS PostgreSQL (5) - 关系数据库         │
+│  ├─ OSS-对象存储 (133)                      │
+│  └─ RDS-PostgreSQL-云数据库 (5)            │
 │                                             │
 │  应用部署层                                   │
-│  └─ SAE (88) - Serverless应用引擎           │
+│  └─ SAE-Serverless应用引擎 (88)            │
 │                                             │
 │  安全合规层                                   │
-│  └─ GREEN (6) - 内容安全审核                 │
+│  └─ Green-内容安全 (6)                      │
 │                                             │
 └─────────────────────────────────────────────┘
 ```
 
-### 医疗AI应用场景
+### 典型应用场景
 
 | 场景 | 核心产品 | 支持产品 |
 |------|----------|----------|
-| **智能问诊** | Model Studio + FC | DashVector + OpenSearch |
+| **智能问诊** | ModelStudio + FC | DashVector + OpenSearch |
 | **病历识别** | OCR | OSS + FC |
-| **医学知识库** | DashVector + OpenSearch | Model Studio + OSS |
-| **医患对话** | Model Studio + FC | GREEN + SAE |
-| **医学影像** | OSS + FC | Model Studio |
-| **合规审核** | GREEN | FC + SAE |
+| **医学知识库** | DashVector + OpenSearch | ModelStudio + OSS |
+| **医患对话** | ModelStudio + FC | Green + SAE |
+| **医学影像** | OSS + FC | ModelStudio |
+| **合规审核** | Green | FC + SAE |
 
-## 🎯 典型架构示例
+## 💡 架构示例
 
 ### 医疗AI问答系统
 
 ```
 用户提问 → SAE (小程序)
     ↓
-FC (API网关) → Model Studio (通义千问)
+FC (API网关) → ModelStudio (通义千问)
     ↓
 DashVector (向量检索) ← OSS (医学文献)
     ↓
 OpenSearch (补充检索)
     ↓
-GREEN (内容审核)
+Green (内容审核)
     ↓
 返回答案 → 用户
 ```
@@ -143,21 +144,23 @@ OSS (存储病历图片)
     ↓
 OCR (文字识别)
     ↓
-Model Studio (结构化提取)
+ModelStudio (结构化提取)
     ↓
-RDS PostgreSQL (存储数据)
+RDS-PostgreSQL (存储数据)
     ↓
-GREEN (隐私审核)
+Green (隐私审核)
     ↓
 返回结果 → 医生
 ```
 
-## 📖 详细文档
+## 📝 命名规范
 
-- [产品详细说明](./PRODUCTS-README.md) - 各产品的详细用途和分类
-- [函数计算 FC](./FC-函数计算/) - Serverless AI推理
-- [Model Studio](./Model-Studio-百炼/) - 大模型服务
-- [其他产品](./) - 查看各产品目录
+所有产品目录统一采用 **英文产品名-中文全称** 的命名格式，便于识别和检索。
+
+示例：
+- `ModelStudio-百炼`
+- `OSS-对象存储`
+- `OCR-文字识别`
 
 ## ⚠️ 免责声明
 
