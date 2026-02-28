@@ -1,0 +1,207 @@
+### 关注阿里云
+
+关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+
+![阿里云APP](https://img.alicdn.com/imgextra/i4/O1CN01XLesV31fkf7pYNATb_!!6000000004045-2-tps-400-400.png)![阿里云微信](https://img.alicdn.com/tfs/TB1AOdINW6qK1RjSZFmXXX0PFXa-258-258.jpg)
+
+联系我们：4008013260
+
+[首页](https://help.aliyun.com/) [容器服务 Kubernetes 版 ACK](https://help.aliyun.com/zh/ack/)[ACK托管与专有集群](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/)[产品概述](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/product-overview/)[产品简介](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/product-overview/product-introduction-1/)基本概念
+
+# 基本概念
+
+更新时间：2025-02-26 01:39:11
+
+复制为 MD 格式
+
+[产品详情](https://www.aliyun.com/product/kubernetes)
+
+[我的收藏](https://help.aliyun.com/my_favorites.html)
+
+[上一篇：应用场景](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/product-overview/common-scenarios)[下一篇：计费概述](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/product-overview/ack-pro-cluster-billing)
+
+该文章对您有帮助吗？
+
+反馈
+
+- 本页导读 （1）
+
+相关文档
+
+在使用容器服务ACK前，需理解该产品所涉及的概念。本文为您介绍使用容器服务ACK过程中遇到的常用名词的基本概念和简要描述，以便于您更好地理解ACK产品。
+
+- **_集群_**
+
+  - 集群指容器运行所需要的云资源组合，关联了若干服务器节点、负载均衡、专有网络等云资源。
+
+
+
+    ACK支持的集群类型如下表。
+
+
+
+
+
+
+    | **集群类型** | **描述** |
+    | --- | --- |
+
+
+
+    |     |     |
+    | --- | --- |
+    | **集群类型** | **描述** |
+    | ACK集群Pro版 | 是在ACK集群基础版的基础上针对企业大规模生产环境进一步增强了可靠性、安全性，并且提供可赔付的SLA的Kubernetes集群。 |
+    | ACK集群基础版 | 只需创建节点，控制面由ACK创建并托管。具备简单、低成本、无需运维管理Kubernetes集群控制面板的特点。 |
+    | ACK专有集群 | 需要创建3个Master（高可用）节点及若干Worker节点，可对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。 |
+    | 安全沙箱集群 | 创建一个以弹性裸金属（神龙）实例为工作节点的集群，神龙服务器为您提供超高性能容器实例，适合高负载、高带宽需求的业务场景。 |
+    | 加密计算集群 | 创建一个基于Intel SGX加密计算的托管集群，可以保护您的敏感代码和数据，适合隐私数据保护、区块链、密钥、知识产权、生信基因计算等场景。 |
+    | ACK Edge集群 | ACK Edge集群是针对边缘计算场景推出的云边一体化协同托管方案。边缘托管集群采用非侵入方式增强，提供边缘自治、边缘单元、边缘流量管理、原生运维API支持等能力，以原生方式支持边缘计算场景下的应用统一生命周期管理和统一资源调度。 |
+    | ACK Serverless集群 | 无需创建和管理Master节点及Worker节点，即可通过控制台或者命令配置容器实例的资源、指明应用容器镜像以及对外服务的方式，直接启动应用程序。 |
+    | ACK One注册集群 | 注册集群是用于将本地数据中心Kubernetes集群或其他云厂商Kubernetes集群接入ACK服务平台统一管理的集群形态。 |
+- **_节点_**
+
+  - 一台服务器（可以是虚拟机实例或者物理服务器）已经安装了Docker Engine，可以用于部署和管理容器。容器服务ACK的Agent程序会被安装到节点上并注册到一个集群上。集群中的节点数量可以伸缩。
+- **_节点池_**
+
+  - 节点池是具有相同属性的一组节点的逻辑集合，允许对节点进行统一的管理和运维，例如节点升级、弹性伸缩等。您可以进一步使用节点池的自动化运维能力，使用OS CVE漏洞自动修复、故障节点自动恢复、kubelet和containerd版本自动升级等功能，降低运维成本。详情请参见 [节点池](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/user-guide/node-pool-overview/ "")。
+- **_专有网络VPC_**
+
+  - 专有网络VPC是您自己独有的云上私有网络。您可以完全掌控自己的专有网络，例如选择IP地址范围、配置路由表和网关等，您可以在自己定义的专有网络中使用阿里云资源如云服务器、云数据库RDS版和负载均衡等。
+- **_安全组_**
+
+  - 安全组是一种虚拟防火墙，具备状态检测和数据包过滤能力，用于在云端划分安全域。安全组是一个逻辑上的分组，由同一地域内具有相同安全保护需求并相互信任的实例组成。
+- **_应用目录_**
+
+  - 应用目录功能集成了Helm，提供了Helm的相关功能，并进行了相关功能扩展，例如提供图形化界面。
+- **_编排模板_**
+
+  - 编排模板是一种保存Kubernetes YAML格式编排文件的方式。
+- **_Knative_**
+
+  - Knative是基于Kubernetes的Serverless框架。其目标是制定云原生、跨平台的Serverless编排标准。
+- **_Kubernetes_**
+
+  - Kubernetes是一个开源平台，具有可移植性和可扩展性，用于管理容器化的工作负载和服务，简化了声明式配置和自动化。
+- **_容器（Container）_**
+
+  - 打包应用及其运行依赖环境的技术，一个节点可运行多个容器。
+- **_镜像（Image）_**
+
+  - 容器镜像是容器应用打包的标准格式，封装了应用程序及其所有软件依赖的二进制数据。在部署容器化应用时可以指定镜像，镜像可以来自于Docker Hub，阿里云镜像服务，或者用户的私有镜像仓库。镜像ID可以由镜像所在仓库URI和镜像Tag（默认为`latest`）唯一确认。
+- **_镜像仓库（Image Registry）_**
+
+  - 容器镜像仓库是一种存储库，用于存储Kubernetes和基于容器应用开发的容器镜像。
+- **_管理节点（Master Node）_**
+
+  - 管理节点是Kubernetes集群的管理者，运行着的服务包括kube-apiserver、kube-scheduler、kube-controller-manager、etcd组件，和容器网络相关的组件。
+- **_工作节点（Worker Node）_**
+
+  - 工作节点是Kubernetes集群中承担工作负载的节点，可以是虚拟机也可以是物理机。工作节点承担实际的Pod调度以及与管理节点的通信等。一个工作节点上的服务包括Docker运行时环境、kubelet、Kube-Proxy以及其它一些可选的组件。
+- **_命名空间（Namespace）_**
+
+  - 命名空间为Kubernetes集群提供虚拟的隔离作用。Kubernetes集群初始有3个命名空间，分别是默认命名空间default、系统命名空间kube-system和kube-public，除此以外，管理员可以创建新的命名空间以满足需求。
+- **_容器组（Pod）_**
+
+  - Pod是Kubernetes部署应用或服务的最小的基本单位。一个Pod封装多个应用容器（也可以只有一个容器）、存储资源、一个独立的网络IP以及管理控制容器运行方式的策略选项。
+- **_副本控制器（Replication Controller，RC）_**
+
+  - RC确保任何时候Kubernetes集群中有指定数量的Pod副本在运行。通过监控运行中的Pod来保证集群中运行指定数目的Pod副本。指定的数目可以是多个也可以是1个；少于指定数目，RC就会启动运行新的Pod副本；多于指定数目，RC就会终止多余的Pod副本。
+- **_副本集（ReplicaSet，RS）_**
+
+  - ReplicaSet（RS）是RC的升级版本，唯一区别是对选择器的支持，RS能支持更多种类的匹配模式。副本集对象一般不单独使用，而是作为Deployment的理想状态参数使用。
+- **_工作负载（Workload）_**
+
+  - 工作负载是在Kubernetes上运行的应用程序。工作负载包括以下几种类型：
+
+
+
+
+    | **工作负载类型** | **描述** |
+    | --- | --- |
+
+
+
+    |     |     |
+    | --- | --- |
+    | **工作负载类型** | **描述** |
+    | 无状态工作负载（Deployment） | 无状态工作负载表示对Kubernetes集群的一次更新操作。适用于运行完全独立、功能相同应用的场景。 |
+    | 有状态工作负载（StatefulSet） | 有状态工作负载支持应用部署、扩容、滚动升级时有序进行。如果希望使用存储卷为工作负载提供持久存储，可以使用StatefulSet作为解决方案的一部分。 |
+    | 守护进程集（DaemonSet） | 守护进程集确保全部（或者某些）节点上运行一个Pod。与Deployment不同，DaemonSet会在指定的节点上都部署定义的Pod，确保这些节点都运行守护进程Pod。适用集群的日志、监控等部署场景。 |
+    | 任务（Job） | Job指运行一次性的任务。您可以使用Job以并行的方式运行多个 Pod。 |
+    | 定时任务（CronJob） | CronJob指根据规划时间周期性地运行反复的任务。适用于执行数据备份或者发送邮件的场景。 |
+    | 自定义资源（CustomResourceDefinitions，CRD） | 在庞大的Kubernetes生态系统中，您可以通过CRD添加第三方工作负载资源。CRD资源允许您定义定制资源。 |
+- **_标签（Label）_**
+
+  - Labels的实质是附着在资源对象上的一系列Key/Value键值对，用于指定对用户有意义的对象的属性，标签对内核系统是没有直接意义的。标签可以在创建一个对象的时候直接赋予，也可以在后期随时修改，每一个对象可以拥有多个标签，但key值必须唯一。
+- **_服务（Service）_**
+
+  - Service是Kubernetes的基本操作单元，是真实应用服务的抽象，每一个服务后面都有很多对应的容器来提供支持，通过Kube-Proxy的ports和服务selector决定服务请求传递给后端的容器，对外表现为一个单一访问接口。
+- **_路由（Ingress）_**
+
+  - Ingress是授权入站连接到达集群服务的规则集合。您可以通过Ingress配置提供外部可访问的URL、负载均衡、SSL、基于名称的虚拟主机等。通过POST Ingress资源到API Server的方式来请求Ingress。Ingress Controller负责实现Ingress，通常使用负载均衡器，它还可以配置边界路由和其他前端，这有助于以高可用的方式处理流量。
+- **_配置项（ConfigMap）_**
+
+  - 配置项可用于存储细粒度信息如单个属性，或粗粒度信息如整个配置文件或JSON对象。您可以使用配置项保存不需要加密的配置信息和配置文件。
+- **_保密字典（Secret）_**
+
+  - 保密字典用于存储在Kubernetes集群中使用一些敏感的配置，例如密码、证书等信息。
+- **_卷（Volume）_**
+
+  - 和Docker的存储卷有些类似，Docker的存储卷作用范围为一个容器，而Kubernetes的存储卷的生命周期和作用范围是一个Pod。每个Pod中声明的存储卷由Pod中的所有容器共享。
+- **_存储卷（Persistent Volume，PV）_**
+
+  - PV是集群内的存储资源，类似节点是集群资源一样。PV独立于Pod的生命周期，可根据不同的StorageClass类型创建不同类型的PV。
+- **_存储卷声明（Persistent Volume Claim，PVC）_**
+
+  - PVC是资源的使用者。类似Pod消耗节点资源一样，而PVC消耗PV资源。
+- **_存储类（StorageClass）_**
+
+  - 存储类可以实现动态供应存储卷。通过动态存储卷，Kubernetes将能够按照用户的需要，自动创建其所需的存储。
+- **_弹性伸缩（Autoscaling）_**
+
+  - 弹性伸缩是根据业务需求和策略，经济地自动调整弹性计算资源的管理服务。典型的场景包含在线业务弹性、大规模计算训练、深度学习GPU或共享GPU的训练与推理、定时周期性负载变化等。ACK支持的弹性伸缩服务如下表。
+
+
+
+
+    | **弹性伸缩维度** | **弹性伸缩分类** | **描述** |
+    | --- | --- | --- |
+
+
+
+    |     |     |     |
+    | --- | --- | --- |
+    | **弹性伸缩维度** | **弹性伸缩分类** | **描述** |
+    | 调度层弹性 | 容器水平伸缩（HPA） | ACK容器水平伸缩基于CPU使用率自动扩缩Pod数量。适用于Deployment、StatefulSet等实现了scale接口的对象。 |
+    | 容器定时伸缩（CronHPA） | 应对资源浪费的场景，ACK提供kubernetes-cronhpa-controller组件，实现资源定时扩容。适用于Deployment、StatefulSet等实现了scale接口的对象。此外CronHPA提供了HPA对象的兼容能力，您可以同时使用CronHPA与HPA。 |
+    | 容器垂直伸缩（VPA） | 容器垂直伸缩会基于Pod的资源使用情况自动为集群设置资源占用的限制，从而让集群将Pod调度到有足够资源的最佳节点上。容器垂直伸缩也会保持最初容器定义中资源`request`和`limit`的占比。适用于无法水平扩展的应用，通常是在Pod出现异常恢复时生效。 |
+    | 资源层弹性 | 节点自动伸缩 | ACK的自动伸缩能力是通过节点自动伸缩组件实现的，可以按需弹出普通实例、GPU实例、竞价付费实例，支持多可用区、多实例规格、多种伸缩模式，满足不同的节点伸缩场景。全场景支持，适合在线业务、深度学习、大规模成本算力交付等。 |
+- **_可观测性（Observability）_**
+
+  - Kubernetes可观测性体系包含监控和日志两部分，监控可以帮助开发者查看系统的运行状态，而日志可以协助问题的排查和诊断。
+- **_Helm_**
+
+  - Helm是Kubernetes包管理平台。Helm将一个应用的相关资源组织成为Charts，然后通过Charts管理程序包。
+- **_节点亲和性（nodeAffinity）_**
+
+  - 节点亲和性指通过Worker节点的Label标签控制Pod部署在特定的节点上。
+- **_污点（Taints）_**
+
+  - 污点和节点亲和性相反，它使节点能够排斥一类特定的Pod。
+- **_容忍（Tolerations）_**
+
+  - 应用于Pod上，允许（但并不要求）Pod调度到带有与之匹配的污点的节点上。
+- **_应用亲和性（podAffinity）_**
+
+  - 应用亲和性决定应用Pod可以和特定Pod部署在同一拓扑域。例如，对于相互通信的服务，可通过应用亲和性调度，将其部署到同一拓扑域（例如同一个主机）中，以减少它们之间的网络延迟。
+- **_应用反亲和性（podAntiAffinity）_**
+
+  - 应用反亲和性决定应用Pod不与特性Pod部署在同一拓扑域。例如，将一个服务的Pod分散部署到不同的拓扑域（例如不同主机）中，以提高服务本身的稳定性。
+- **_服务网格（Istio）_**
+
+  - Istio是一个提供连接、保护、控制以及观测服务的开放平台。阿里云服务网格提供一个全托管式的服务网格平台，兼容社区Istio开源服务网格，用于简化服务的治理，包括服务调用之间的流量路由与拆分管理、服务间通信的认证安全以及网格可观测性能力。
+
+## 相关文档
+
+关于Kubernetes的更多概念及术语详情，请参见 [Kubernetes concepts](https://kubernetes.io/docs/concepts/)。
